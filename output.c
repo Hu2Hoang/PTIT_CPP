@@ -365,3 +365,13 @@ int main(){
 	}
 	return 0;
 }
+//Nhap mang khi chua biet so luong phan tu
+int n=0,c=0,l=0;
+		char kt=' ';
+		while(kt!='\n'){
+			int x;cin>>x;
+			n++;
+			if(x%2==1) l++;
+			else c++;
+			kt=getchar();
+		}
