@@ -375,3 +375,9 @@ int n=0,c=0,l=0;
 			else c++;
 			kt=getchar();
 		}
+
+stringstream ss(s1);
+		string tok;
+		while(ss>>tok){
+			ss1.insert(tok);
+		}
