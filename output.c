@@ -1,3 +1,4 @@
+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
 #define max(a,b) (((a)>(b))?(a):(b))
 #define min(a,b) (((a)<(b))?(a):(b))
 
@@ -175,7 +176,7 @@ void sieve(){
 	}
 }
 for(int i=1;i<=n;i++){
-			if(prime[i]==0) printf("%d ",i);
+	if(prime[i]==0) printf("%d ",i);
 }
 //Check so nguyen to
 bool snt(long long n)
@@ -206,6 +207,16 @@ bool snt(long long q){
 		}
 	}
 	return true;
+}
+//phan tich thua so nt
+void pt(ll n){
+	fio(i,2,sqrt(n)+1){
+		while(!(n%i)){
+			cout<<i<<" ";
+			n/=i;
+		}
+	}
+	if(n!=1) cout<<n;
 }
 //Tim kiem nhi phan
 //int vt=binarySearch(a,0,n-1,x);
@@ -381,3 +392,5 @@ stringstream ss(s1);
 		while(ss>>tok){
 			ss1.insert(tok);
 		}
+if(a&1) check so le
+for(auto &x:vi)
