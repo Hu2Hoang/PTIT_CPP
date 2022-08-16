@@ -3,7 +3,7 @@ using namespace std;
 //Code designed by https://linktr.ee/hoangdinh314
 #define ll long long
 #define pb push_back
-#define fio(i,a1,b1) for(ll i=a1;i<b1;i++)
+#define fio(i,a1,b1) for(int i=a1;i<b1;i++)
 #define w(t) int t;scanf("%d",&t);while(t--)
 #define tolower(str) transform(str.begin(),str.end(),str.begin(),::tolower);
 #define toupper(str) transform(str.begin(),str.end(),str.begin(),::toupper);
@@ -17,24 +17,17 @@ using namespace std;
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 int main(){
 	w(t){
-		int n,x;cin>>n>>x;
-		ll dd[100005];
-		bool check=false;
-		vector<int> vi;
-		map<int,int> mp;
-		fio(i,0,n){
-			int x;cin>>x;
-			vi.pb(x);
-			mp[x]++;
-		}
-		fio(i,0,n){
-			if(mp[x+vi[i]]!=0){
-				check=true;
-				break;
+		string s;cin >> s;
+		ll res=0,even=0,odd=0;
+		fio(i,0,s.size()){
+			if(i%2==0){
+				even+=(s[i]-'0');
 			}
+			else odd+=(s[i]-'0');
 		}
-		if(check) cout<<"1";
-		else cout<<"-1";
+		res=even-odd;
+		if(res%11==0) cout<<1;
+		else cout<<0;
 		cout<<endl;
 	}
 	return 0;

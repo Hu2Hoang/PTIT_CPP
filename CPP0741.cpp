@@ -3,7 +3,7 @@ using namespace std;
 //Code designed by https://linktr.ee/hoangdinh314
 #define ll long long
 #define pb push_back
-#define fio(i,a1,b1) for(ll i=a1;i<b1;i++)
+#define fio(i,a1,b1) for(int i=a1;i<b1;i++)
 #define w(t) int t;scanf("%d",&t);while(t--)
 #define tolower(str) transform(str.begin(),str.end(),str.begin(),::tolower);
 #define toupper(str) transform(str.begin(),str.end(),str.begin(),::toupper);
@@ -15,26 +15,21 @@ using namespace std;
 #define mcd(n) vector<int> mcd(n); partial_sum(vi.begin(),vi.end(),mcd.begin());//mcd[r-1]-mcd[l-2]
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
+ll mu2(ll x){
+	return x*x;
+}
+int binary_pow(ll x,ll y,ll p){
+	//if (y == 0) return 1;
+   // if (y == 1) return x;
+    if (y % 2 == 0) return binary_pow(x*x%p,y/2,p)%p;
+    else return x * binary_pow(x*x%p,y/2,p)%p;
+}
 int main(){
 	w(t){
-		int n,x;cin>>n>>x;
-		ll dd[100005];
-		bool check=false;
-		vector<int> vi;
-		map<int,int> mp;
-		fio(i,0,n){
-			int x;cin>>x;
-			vi.pb(x);
-			mp[x]++;
-		}
-		fio(i,0,n){
-			if(mp[x+vi[i]]!=0){
-				check=true;
-				break;
-			}
-		}
-		if(check) cout<<"1";
-		else cout<<"-1";
+		ll x,y;
+		ll p;
+		cin>>x>>y>>p;
+		cout<<binary_pow(x,y,p);
 		cout<<endl;
 	}
 	return 0;

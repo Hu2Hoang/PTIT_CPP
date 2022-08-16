@@ -3,7 +3,7 @@ using namespace std;
 //Code designed by https://linktr.ee/hoangdinh314
 #define ll long long
 #define pb push_back
-#define fio(i,a1,b1) for(ll i=a1;i<b1;i++)
+#define fio(i,a1,b1) for(int i=a1;i<b1;i++)
 #define w(t) int t;scanf("%d",&t);while(t--)
 #define tolower(str) transform(str.begin(),str.end(),str.begin(),::tolower);
 #define toupper(str) transform(str.begin(),str.end(),str.begin(),::toupper);
@@ -16,26 +16,20 @@ using namespace std;
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 int main(){
-	w(t){
-		int n,x;cin>>n>>x;
-		ll dd[100005];
-		bool check=false;
-		vector<int> vi;
-		map<int,int> mp;
-		fio(i,0,n){
-			int x;cin>>x;
-			vi.pb(x);
-			mp[x]++;
-		}
-		fio(i,0,n){
-			if(mp[x+vi[i]]!=0){
-				check=true;
-				break;
-			}
-		}
-		if(check) cout<<"1";
-		else cout<<"-1";
-		cout<<endl;
+	string s;
+	getline(cin, s);
+	tolower(s);
+	vector<string> vs;
+	stringstream ss(s);
+	string tok;
+	while(ss>>tok){
+		vs.pb(tok);
 	}
+	int n=vs.size();
+	cout<<vs[n-1];
+	for(int i=0;i<n-1;i++){
+		cout<<vs[i][0];
+	}
+	cout<<"@ptit.edu.vn";
 	return 0;
 }

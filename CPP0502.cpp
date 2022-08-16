@@ -3,7 +3,7 @@ using namespace std;
 //Code designed by https://linktr.ee/hoangdinh314
 #define ll long long
 #define pb push_back
-#define fio(i,a1,b1) for(ll i=a1;i<b1;i++)
+#define fio(i,a1,b1) for(int i=a1;i<b1;i++)
 #define w(t) int t;scanf("%d",&t);while(t--)
 #define tolower(str) transform(str.begin(),str.end(),str.begin(),::tolower);
 #define toupper(str) transform(str.begin(),str.end(),str.begin(),::toupper);
@@ -15,27 +15,24 @@ using namespace std;
 #define mcd(n) vector<int> mcd(n); partial_sum(vi.begin(),vi.end(),mcd.begin());//mcd[r-1]-mcd[l-2]
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
+struct ThiSinh{
+	string ten;
+	string ns;
+	double a,b,c,sum=0;
+};
+void nhap(ThiSinh &A){
+	getline(cin,A.ten);
+	getline(cin,A.ns);
+	cin>>A.a>>A.b>>A.c;
+	A.sum=A.a+A.b+A.c;
+}
+void in(ThiSinh A){
+	cout<<A.ten<<' '<<A.ns<<' ';
+	printf("%.1lf",A.sum);
+}
 int main(){
-	w(t){
-		int n,x;cin>>n>>x;
-		ll dd[100005];
-		bool check=false;
-		vector<int> vi;
-		map<int,int> mp;
-		fio(i,0,n){
-			int x;cin>>x;
-			vi.pb(x);
-			mp[x]++;
-		}
-		fio(i,0,n){
-			if(mp[x+vi[i]]!=0){
-				check=true;
-				break;
-			}
-		}
-		if(check) cout<<"1";
-		else cout<<"-1";
-		cout<<endl;
-	}
-	return 0;
+    struct ThiSinh A;
+    nhap(A);
+    in(A);
+    return 0;
 }

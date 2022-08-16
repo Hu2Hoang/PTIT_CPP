@@ -3,10 +3,10 @@ using namespace std;
 //Code designed by https://linktr.ee/hoangdinh314
 #define ll long long
 #define pb push_back
-#define fio(i,a1,b1) for(ll i=a1;i<b1;i++)
+#define fio(i,a1,b1) for(int i=a1;i<b1;i++)
 #define w(t) int t;scanf("%d",&t);while(t--)
-#define tolower(str) transform(str.begin(),str.end(),str.begin(),::tolower);
-#define toupper(str) transform(str.begin(),str.end(),str.begin(),::toupper);
+#define tolowerr(str) transform(str.begin(),str.end(),str.begin(),::tolower);
+#define toupperr(str) transform(str.begin(),str.end(),str.begin(),::toupper);
 #define imps(vs) vector<string> vs; fio(i,0,n){ string x;cin>>x; vs.push_back(x); }
 #define exps(vs) for(auto x:vs) cout<<x<<' ';
 #define imp(vi) vector<int> vi; fio(i,0,n){int x;cin>>x;vi.push_back(x);}
@@ -15,26 +15,41 @@ using namespace std;
 #define mcd(n) vector<int> mcd(n); partial_sum(vi.begin(),vi.end(),mcd.begin());//mcd[r-1]-mcd[l-2]
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
+void chuanhoa(string &s){
+	s[0]=toupper(s[0]);
+	fio(i,1,s.size()){
+		s[i]=tolower(s[i]);
+	}
+}
 int main(){
 	w(t){
-		int n,x;cin>>n>>x;
-		ll dd[100005];
-		bool check=false;
-		vector<int> vi;
-		map<int,int> mp;
-		fio(i,0,n){
-			int x;cin>>x;
-			vi.pb(x);
-			mp[x]++;
+		int opt;cin >>opt;
+		cin.ignore();
+		string s;
+		getline(cin, s);
+		vector<string> vs;
+		stringstream ss(s);
+		string tok;
+		while(ss>>tok){
+			vs.pb(tok);
 		}
-		fio(i,0,n){
-			if(mp[x+vi[i]]!=0){
-				check=true;
-				break;
+		int n=vs.size();
+		if(opt==1){
+			chuanhoa(vs[n-1]);
+			cout<<vs[n-1]<<' ';
+			fio(i,0,n-1){
+				chuanhoa(vs[i]);
+				cout<<vs[i]<<' ';
 			}
 		}
-		if(check) cout<<"1";
-		else cout<<"-1";
+		else{
+			fio(i,1,n){
+				chuanhoa(vs[i]);
+				cout<<vs[i]<<' ';
+			}
+			chuanhoa(vs[0]);
+			cout<<vs[0];
+		}
 		cout<<endl;
 	}
 	return 0;
