@@ -178,6 +178,22 @@ void sieve(){
 for(int i=1;i<=n;i++){
 	if(prime[i]==0) printf("%d ",i);
 }
+
+
+map<ll,short> mps;
+void sieve_map(map<ll,short> &mps){
+	mps[0]=mps[1]=1;
+	for (int i = 0; i <= 1000; ++i)
+	{
+		if(mps[i]==0){
+			for(int j=i*i;j<=1000000;j+=i){
+				mps[j]=1;
+			}
+		}
+	}
+}
+
+	sieve_map(mps);
 //Check so nguyen to
 bool snt(long long n)
 {
@@ -394,3 +410,7 @@ stringstream ss(s1);
 		}
 if(a&1) check so le
 for(auto &x:vi)
+
+for(auto x:mp){
+	cout<<x.first<<' '<<x.second<<endl;
+}
