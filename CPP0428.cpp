@@ -13,7 +13,7 @@ using namespace std;
 int main(){
 	w(t){
 		int n,m;cin >>n>>m;
-		int temp=n*m;
+		int temp=n+m;
 		imp(vi,temp);
 		sovi(vi);
 		exp(vi);

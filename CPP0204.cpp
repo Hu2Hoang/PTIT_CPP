@@ -20,16 +20,27 @@ using namespace std;
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
-const int mod=1e9+7;
+map<ll,short> mps;
+void sieve_map(map<ll,short> &mps){
+	mps[0]=mps[1]=1;
+	for (ll i = 0; i <= 1000; ++i)
+	{
+		if(mps[i]==0){
+			for(ll j=i*i;j<=1000000;j+=i){
+				mps[j]=1;
+			}
+		}
+	}
+}
 int main(){
+	sieve_map(mps);
 	w(t){
-		int n;cin >>n;
-		imp(vi);
-		int l,r;cin>>l>>r;
-		while(l<=r&&vi[l]<=vi[l+1]) l++;
-		l++;
-		while(l<=r&&vi[l]<=vi[l-1]) l++;
-		(l>r)?cout<<"Yes":cout<<"No";
+		ll l,r;cin>>l>>r;
+		int res=0;
+		for(ll i=l;i<=r;i++){
+			if(mps[i]==0) res++;
+		}
+		cout<<res;
 		cout<<endl;
 	}
 	return 0;

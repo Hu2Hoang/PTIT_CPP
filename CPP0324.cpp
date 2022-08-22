@@ -3,11 +3,7 @@ using namespace std;
 //Code designed by https://linktr.ee/hoangdinh314
 #define ll long long
 #define pb push_back
-#define fi first
-#define se second
-#define sz(a) int((a).size())
-#define ms(s,n) memset(s,n,sizeof(s))
-#define fio(i,a1,b1) for(int i=a1;i<b1;i++)
+#define fio(i,a1,b1) for(ll i=a1;i<b1;i++)
 #define w(t) int t;scanf("%d",&t);while(t--)
 #define tolowerr(str) transform(str.begin(),str.end(),str.begin(),::tolower);
 #define toupperr(str) transform(str.begin(),str.end(),str.begin(),::toupper);
@@ -19,17 +15,30 @@ using namespace std;
 #define mcd(n) vector<int> mcd(n); partial_sum(vi.begin(),vi.end(),mcd.begin());//mcd[r-1]-mcd[l-2]
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
-inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
-const int mod=1e9+7;
+ll aModM(string &a,ll m){
+	ll temp=0;
+	fio(i,0,a.size()){
+		temp=temp*10+(a[i]-'0');
+		temp%=m;
+	}
+	return temp;
+}
+ll powMod(string a,ll b,ll m){
+	ll a_Pow_m=aModM(a,m);
+	ll res=1;
+	while(b){
+		if(b&1) res=(res*a_Pow_m)%m;
+		b=b>>1;
+		a_Pow_m=((a_Pow_m*a_Pow_m)%m+m)%m;
+	}
+	return (res%m+m)%m;
+}
 int main(){
 	w(t){
-		int n;cin >>n;
-		imp(vi);
-		int l,r;cin>>l>>r;
-		while(l<=r&&vi[l]<=vi[l+1]) l++;
-		l++;
-		while(l<=r&&vi[l]<=vi[l-1]) l++;
-		(l>r)?cout<<"Yes":cout<<"No";
+		string a;
+		ll b,m;
+		cin>>a>>b>>m;
+		cout<<powMod(a,b,m);
 		cout<<endl;
 	}
 	return 0;

@@ -5,8 +5,7 @@ using namespace std;
 #define pb push_back
 #define fi first
 #define se second
-#define sz(a) int((a).size())
-#define ms(s,n) memset(s,n,sizeof(s))
+
 #define fio(i,a1,b1) for(int i=a1;i<b1;i++)
 #define w(t) int t;scanf("%d",&t);while(t--)
 #define tolowerr(str) transform(str.begin(),str.end(),str.begin(),::tolower);
@@ -19,18 +18,24 @@ using namespace std;
 #define mcd(n) vector<int> mcd(n); partial_sum(vi.begin(),vi.end(),mcd.begin());//mcd[r-1]-mcd[l-2]
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
-inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
-const int mod=1e9+7;
-int main(){
-	w(t){
-		int n;cin >>n;
-		imp(vi);
-		int l,r;cin>>l>>r;
-		while(l<=r&&vi[l]<=vi[l+1]) l++;
-		l++;
-		while(l<=r&&vi[l]<=vi[l-1]) l++;
-		(l>r)?cout<<"Yes":cout<<"No";
-		cout<<endl;
-	}
+struct PhanSo{
+	ll tu,mau;
+};
+void nhap(PhanSo &a){
+	cin>>a.tu>>a.mau;
+}
+void rutgon(PhanSo &a){
+	ll temp=__gcd(a.tu,a.mau);
+	a.tu/=temp;
+	a.mau/=temp;
+}
+void in(PhanSo a){
+	cout<<a.tu<<"/"<<a.mau;
+}
+int main() {
+	struct PhanSo p;
+	nhap(p);
+	rutgon(p);
+	in(p);
 	return 0;
 }

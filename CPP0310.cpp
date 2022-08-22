@@ -21,15 +21,26 @@ using namespace std;
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
+ll min_str(string a,string b){
+	fio(i,0,a.length()){
+		if(a[i]=='6') a[i]='5';
+	}
+	fio(i,0,b.length()) if(b[i]=='6') b[i]='5';
+	ll x=stoll(a),y=stoll(b);
+	return x+y;
+}
+ll max_str(string a,string b){
+	fio(i,0,a.length()){
+		if(a[i]=='5') a[i]='6';
+	}
+	fio(i,0,b.length()) if(b[i]=='5') b[i]='6';
+	ll x=stoll(a),y=stoll(b);
+	return x+y;
+}
 int main(){
 	w(t){
-		int n;cin >>n;
-		imp(vi);
-		int l,r;cin>>l>>r;
-		while(l<=r&&vi[l]<=vi[l+1]) l++;
-		l++;
-		while(l<=r&&vi[l]<=vi[l-1]) l++;
-		(l>r)?cout<<"Yes":cout<<"No";
+		string a,b;cin>>a>>b;
+		cout<<min_str(a,b)<<' '<<max_str(a,b);
 		cout<<endl;
 	}
 	return 0;

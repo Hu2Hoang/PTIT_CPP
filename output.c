@@ -402,7 +402,17 @@ int n=0,c=0,l=0;
 			else c++;
 			kt=getchar();
 		}
-
+char kt=' ';
+	int n=0;
+	string s;
+	while(cin>>s){
+		if(s=="1") continue;
+		if(Palindrome(s)==true){
+			n++;
+			mp[s]++;
+		}
+		kt=getchar();
+	}
 stringstream ss(s1);
 		string tok;
 		while(ss>>tok){
@@ -411,6 +421,24 @@ stringstream ss(s1);
 if(a&1) check so le
 for(auto &x:vi)
 
+/Duyet map
 for(auto x:mp){
 	cout<<x.first<<' '<<x.second<<endl;
 }
+/Duyet map nguoc
+for(auto it=mp.rbegin();it!=mp.rend();it++){
+	cout<<it->first<<' '<<it->second<<endl;
+}
+
+struct cmp{
+	bool operator()(const string&a,const string&b) const{
+		return a.length()>b.length();
+	}
+};
+map<string,int,cmp> mp;
+
+auto start = high_resolution_clock::now();
+// Function
+auto stop = high_resolution_clock::now();
+auto duration = duration_cast<microseconds>(stop - start);
+cout<<' '<< duration.count() <<"micro_sec" << endl;

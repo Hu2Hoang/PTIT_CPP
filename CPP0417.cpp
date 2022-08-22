@@ -20,16 +20,19 @@ using namespace std;
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
-const int mod=1e9+7;
 int main(){
 	w(t){
-		int n;cin >>n;
-		imp(vi);
-		int l,r;cin>>l>>r;
-		while(l<=r&&vi[l]<=vi[l+1]) l++;
-		l++;
-		while(l<=r&&vi[l]<=vi[l-1]) l++;
-		(l>r)?cout<<"Yes":cout<<"No";
+		int n;cin>>n;
+		int a[n],b[n];
+		fio(i,0,n){
+			cin>>a[i];
+			b[i]=a[i];
+		}
+		sort(b,b+n);
+		int j=n-1,i=0;
+		while(a[i]==b[i]) i++;
+		while(a[j]==b[j]) j--;
+		cout<<i+1<<' '<<j+1;
 		cout<<endl;
 	}
 	return 0;

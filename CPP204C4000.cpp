@@ -5,8 +5,6 @@ using namespace std;
 #define pb push_back
 #define fi first
 #define se second
-#define sz(a) int((a).size())
-#define ms(s,n) memset(s,n,sizeof(s))
 #define fio(i,a1,b1) for(int i=a1;i<b1;i++)
 #define w(t) int t;scanf("%d",&t);while(t--)
 #define tolowerr(str) transform(str.begin(),str.end(),str.begin(),::tolower);
@@ -19,18 +17,25 @@ using namespace std;
 #define mcd(n) vector<int> mcd(n); partial_sum(vi.begin(),vi.end(),mcd.begin());//mcd[r-1]-mcd[l-2]
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
-inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
-const int mod=1e9+7;
+struct SinhVien
+{
+	string ma="N20DCCN001";
+	string name,lop,ns;
+	float gpa;
+};
+void nhapThongTinSV(SinhVien &a){
+	getline(cin,a.name);
+	cin>>a.lop>>a.ns>>a.gpa;
+}
+void inThongTinSV(SinhVien a){
+	if(a.ns[1]=='/') a.ns="0"+a.ns;
+	if(a.ns[4]=='/') a.ns.insert(3,"0");
+	cout<<a.ma<<' '<<a.name<<' '<<a.lop<<' '<<a.ns<<' ';
+	printf("%.2f",a.gpa);
+}
 int main(){
-	w(t){
-		int n;cin >>n;
-		imp(vi);
-		int l,r;cin>>l>>r;
-		while(l<=r&&vi[l]<=vi[l+1]) l++;
-		l++;
-		while(l<=r&&vi[l]<=vi[l-1]) l++;
-		(l>r)?cout<<"Yes":cout<<"No";
-		cout<<endl;
-	}
+	struct SinhVien a;
+    nhapThongTinSV(a);
+    inThongTinSV(a);
 	return 0;
 }

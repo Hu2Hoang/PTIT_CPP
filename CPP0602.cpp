@@ -20,17 +20,41 @@ using namespace std;
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
-const int mod=1e9+7;
-int main(){
-	w(t){
-		int n;cin >>n;
-		imp(vi);
-		int l,r;cin>>l>>r;
-		while(l<=r&&vi[l]<=vi[l+1]) l++;
-		l++;
-		while(l<=r&&vi[l]<=vi[l-1]) l++;
-		(l>r)?cout<<"Yes":cout<<"No";
-		cout<<endl;
+class SinhVien
+{
+private:
+	string ma,ten,ns,lop;
+	float gpa;
+public:
+	SinhVien(){
+		ma=ten=ns=lop="";
+		gpa=0;
 	}
-	return 0;
+	SinhVien(string ten,string ns,float gpa){
+		this->ten=ten;
+		this->ns=ns;
+		this->gpa=gpa;
+	}
+	friend istream& operator >> (istream&,SinhVien&);
+	friend ostream& operator << (ostream&,SinhVien);
+};
+istream& operator >> (istream &in,SinhVien& a){
+	a.ma="B20DCCN001";
+	getline(in, a.ten);
+	in>>a.lop>>a.ns>>a.gpa;
+	if(a.ns[1]=='/') a.ns="0"+a.ns;
+	if(a.ns[4]=='/') a.ns.insert(3,"0");
+	return in;
+}
+ostream& operator << (ostream& out, SinhVien a){
+	out<<a.ma<<" "<<a.ten<<" "<<a.lop<<" "<<a.ns<<" ";
+	printf("%.2f",a.gpa);
+	return out;
+}
+
+int main(){
+    SinhVien a;
+    cin>>a;
+    cout<<a;
+    return 0;
 }

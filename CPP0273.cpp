@@ -23,13 +23,23 @@ inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
 int main(){
 	w(t){
-		int n;cin >>n;
-		imp(vi);
-		int l,r;cin>>l>>r;
-		while(l<=r&&vi[l]<=vi[l+1]) l++;
-		l++;
-		while(l<=r&&vi[l]<=vi[l-1]) l++;
-		(l>r)?cout<<"Yes":cout<<"No";
+		int n;cin>>n;
+		int a[n+1]={0};
+		bool check=false;
+		for(int i=1;i<=n;i++){
+			cin>>a[i];
+			a[i]+=a[i-1];
+		}
+		fio(i,1,n+1){
+			int trai=a[i-1];
+			int phai=a[n]-a[i];
+			if(trai==phai){
+				cout<<i;
+				check=true;
+				break;
+			}
+		}
+		if(check==false) cout<<-1;
 		cout<<endl;
 	}
 	return 0;

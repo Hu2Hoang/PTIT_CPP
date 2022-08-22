@@ -7,7 +7,7 @@ using namespace std;
 #define se second
 #define sz(a) int((a).size())
 #define ms(s,n) memset(s,n,sizeof(s))
-#define fio(i,a1,b1) for(int i=a1;i<b1;i++)
+#define fio(i,a1,b1) for(ll i=a1;i<b1;i++)
 #define w(t) int t;scanf("%d",&t);while(t--)
 #define tolowerr(str) transform(str.begin(),str.end(),str.begin(),::tolower);
 #define toupperr(str) transform(str.begin(),str.end(),str.begin(),::toupper);
@@ -20,16 +20,25 @@ using namespace std;
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
-const int mod=1e9+7;
+vector<ll> f(1e6+1,0);
+void fibo(){
+	f[0]=0;
+	f[1]=1;
+	for(ll i=2;i<=1e6;i++){
+		f[i]=f[i-1]+f[i-2];
+	}
+}
 int main(){
+	fibo();
 	w(t){
-		int n;cin >>n;
-		imp(vi);
-		int l,r;cin>>l>>r;
-		while(l<=r&&vi[l]<=vi[l+1]) l++;
-		l++;
-		while(l<=r&&vi[l]<=vi[l-1]) l++;
-		(l>r)?cout<<"Yes":cout<<"No";
+		ll n;cin>>n;
+		fio(i,0,f.size()){
+			if(f[i]>=n){
+				if(f[i]==n) cout<<"YES";
+				else cout<<"NO";
+				break;
+			}
+		}
 		cout<<endl;
 	}
 	return 0;

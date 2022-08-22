@@ -20,17 +20,34 @@ using namespace std;
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
-const int mod=1e9+7;
-int main(){
-	w(t){
-		int n;cin >>n;
-		imp(vi);
-		int l,r;cin>>l>>r;
-		while(l<=r&&vi[l]<=vi[l+1]) l++;
-		l++;
-		while(l<=r&&vi[l]<=vi[l-1]) l++;
-		(l>r)?cout<<"Yes":cout<<"No";
-		cout<<endl;
+class SinhVien
+{
+private:
+	string ma,ten,ns,lop;
+	float gpa;
+public:
+	SinhVien(){
+		ma=ten=ns=lop="";
+		gpa=0;
 	}
-	return 0;
+	void nhap();
+	void xuat();
+};
+void SinhVien::nhap(){
+	ma="B20DCCN001";
+	getline(cin,ten);
+	cin>>lop>>ns>>gpa;
+	if(ns[1]=='/') ns="0"+ns;
+	if(ns[4]=='/') ns.insert(3,"0");
+}
+void SinhVien::xuat(){
+	cout<<ma<<' '<<ten<<' '<<lop<<' '<<ns<<' ';
+	printf("%.2f",gpa);
+}
+
+int main(){
+    SinhVien a;
+    a.nhap();
+    a.xuat();
+    return 0;
 }
