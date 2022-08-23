@@ -20,18 +20,38 @@ using namespace std;
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
-int main(){
-	w(t){
-		int n;cin>>n;
-		set<int> si;
-		fio(i,0,n){
-			int x;
-			cin>>x;si.insert(x);
-		}
-		vector<int> ve(si.begin(),si.end());
-		if(ve.size()<2) cout<<-1;
-		else cout<<ve[0]<<' '<<ve[1];
-		cout<<endl;
-	}
-	return 0;
+const int mod=1e9+7;
+string Sum(string a, string b)
+{
+    int len = max(a.length(), b.length());
+    while (a.length() < len)
+        a = "0" + a;
+    while (b.length() < len)
+        b = "0" + b;
+
+    string res = "";
+    int remember = 0;
+    for (int i = len - 1; i >= 0; i--)
+    {
+        int digit = (a[i] - '0') + (b[i] - '0') + remember;
+        remember = digit / 10;
+        res = char(digit % 10 + '0') + res;
+    }
+    
+    if (remember > 0)
+        res = char(remember + '0') + res;
+    return res;
+}
+
+
+int main()
+{
+    int T;
+    cin >> T;
+    while (T--){
+         string a, b;
+    cin >> a >> b;
+    cout << Sum(a, b) << endl;
+    }
+    return 0;
 }

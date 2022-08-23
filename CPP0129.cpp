@@ -20,18 +20,32 @@ using namespace std;
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
-int main(){
-	w(t){
-		int n;cin>>n;
-		set<int> si;
-		fio(i,0,n){
-			int x;
-			cin>>x;si.insert(x);
-		}
-		vector<int> ve(si.begin(),si.end());
-		if(ve.size()<2) cout<<-1;
-		else cout<<ve[0]<<' '<<ve[1];
-		cout<<endl;
-	}
-	return 0;
+const int mod=1e9+7;
+void solve()
+{
+    int n, p;
+    cin >> n >> p;
+    int x = 0;
+    for (int i = 1; i <= n; ++i)
+    {
+        if (i % p == 0)
+        {
+            int t = i;
+            while (t % p == 0)
+            {
+                x++;
+                t /= p;
+            }
+        }
+    }
+    cout << x << endl;
+}
+
+int main()
+{
+    int T;
+    cin >> T;
+    while (T--)
+        solve();
+    return 0;
 }

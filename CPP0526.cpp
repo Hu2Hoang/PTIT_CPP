@@ -5,6 +5,8 @@ using namespace std;
 #define pb push_back
 #define fi first
 #define se second
+#define sz(a) int((a).size())
+#define ms(s,n) memset(s,n,sizeof(s))
 #define fio(i,a1,b1) for(int i=a1;i<b1;i++)
 #define w(t) int t;scanf("%d",&t);while(t--)
 #define tolowerr(str) transform(str.begin(),str.end(),str.begin(),::tolower);
@@ -17,49 +19,33 @@ using namespace std;
 #define mcd(n) vector<int> mcd(n); partial_sum(vi.begin(),vi.end(),mcd.begin());//mcd[r-1]-mcd[l-2]
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
-struct cmp{
-	bool operator()(const string&a,const string&b) const{
-		if(a.length()>b.length()) return 1;
-		if(a.length()==b.length()){
-			if(a>b) return 1;
-		}
-	}
-	//return 0;
+inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
+const int mod=1e9+7;
+struct Person
+{	
+	string ten,ns;
+	int dd,mm,yy;
 };
-
-bool Palindrome(string n){
-	int l=0;
-	int r=n.length()-1;
-	while(r>l){
-		if(n[l++]!=n[r--]){
-			return false;
+bool cmp(Person a,Person b){
+	if(a.yy>b.yy) return true;
+	if(a.yy==b.yy){
+		if(a.mm>b.mm) return true;
+		if(a.mm==b.mm){
+			if(a.dd>b.dd) return true;
 		}
 	}
-	return true;
+	return false;
 }
 int main(){
-	map<string,int,cmp> mp;
-	int n=0;
-	string s;
-	while(cin>>s){
-		if(s=="1") continue;
-		if(Palindrome(s)==true){
-			n++;
-			mp[s]++;
-		}
+	int n;cin>>n;
+	Person a[n];
+	fio(i,0,n){
+		cin>>a[i].ten>>a[i].ns;
+		a[i].dd=stoi(a[i].ns.substr(0,2));
+		a[i].mm=stoi(a[i].ns.substr(3,2));
+		a[i].yy=stoi(a[i].ns.substr(6));
 	}
-	//cout<<n<<endl;
-	// for(auto it=mp.rbegin();it!=mp.rend();it++){
-	// 	cout<<it->first<<' '<<it->second<<endl;
-	// }
-	// cout<<endl;
-	// for(auto x:mp){
-	// 	cout<<x.fi<<' '<<x.se<<endl;
-	// }
-	// cout<<endl;
-	for(map<string,int>::iterator it=mp.begin();it!=mp.end();it++){
-		cout<<it->first<<' '<<it->second<<endl;
-	}
+	sort(a,a+n,cmp);
+	cout<<a[0].ten<<'\n'<<a[n-1].ten;
 	return 0;
 }
-//12321 456 12321 34 56 9999999999999999999 12 43 34 54 34 54 34 54 657 45 554 12321 12321 65 76 45 45 34 53 546 565 65645 65 65 35 65 565 565 1

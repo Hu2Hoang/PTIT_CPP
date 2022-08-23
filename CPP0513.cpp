@@ -20,18 +20,40 @@ using namespace std;
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
-int main(){
-	w(t){
-		int n;cin>>n;
-		set<int> si;
-		fio(i,0,n){
-			int x;
-			cin>>x;si.insert(x);
-		}
-		vector<int> ve(si.begin(),si.end());
-		if(ve.size()<2) cout<<-1;
-		else cout<<ve[0]<<' '<<ve[1];
-		cout<<endl;
+const int mod=1e9+7;
+struct SinhVien
+{
+	string ma,ten,lop,ns;
+	float gpa;
+};
+string getMa(int n){
+	string s=to_string(n);
+	while(s.length()<3){
+		s='0'+s;
 	}
-	return 0;
+	return "B20DCCN"+s;
+}
+void nhap(SinhVien a[],int N){
+	fio(i,0,N){
+		cin.ignore();
+		a[i].ma=getMa(i+1);
+		getline(cin,a[i].ten);
+		cin>>a[i].lop>>a[i].ns>>a[i].gpa;
+		if(a[i].ns[1]=='/') a[i].ns="0"+a[i].ns;
+		if(a[i].ns[4]=='/') a[i].ns.insert(3,"0");
+	}
+}
+void in(SinhVien a[],int N){
+	fio(i,0,N){
+		cout<<a[i].ma<<' '<<a[i].ten<<' '<<a[i].lop<<' '<<a[i].ns<<' ';
+		printf("%.2f",a[i].gpa);
+	}
+}
+int main(){
+    struct SinhVien ds[50];
+    int N;
+    cin >> N;
+    nhap(ds, N);
+    in(ds, N);
+    return 0;
 }
