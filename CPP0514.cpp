@@ -23,23 +23,34 @@ inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
 struct SinhVien
 {
-	string ma,ten,lop,ns;
+	string ten,lop,ns,ma;
 	float gpa;
 };
-string getMa(int n){
-	string s=to_string(n);
+string getMa(int i){
+	string s=to_string(i);
 	while(s.length()<3){
 		s='0'+s;
 	}
 	return "B20DCCN"+s;
+}
+string chuanhoa(string str){
+	string s,res="";
+	stringstream ss(str);
+	while(ss>>s){
+		s[0]=toupper(s[0]);
+		res+=s+" ";
+	}
+	return res;
 }
 void nhap(SinhVien a[],int N){
 	fio(i,0,N){
 		cin.ignore();
 		a[i].ma=getMa(i+1);
 		getline(cin,a[i].ten);
+		tolowerr(a[i].ten);
+		a[i].ten=chuanhoa(a[i].ten);
 		cin>>a[i].lop>>a[i].ns>>a[i].gpa;
-		if(a[i].ns[1]=='/') a[i].ns="0"+a[i].ns;
+		if(a[i].ns[1]=='/') a[i].ns="0" + a[i].ns;
 		if(a[i].ns[4]=='/') a[i].ns.insert(3,"0");
 	}
 }

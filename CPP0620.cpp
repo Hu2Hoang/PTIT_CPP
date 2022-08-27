@@ -21,39 +21,40 @@ using namespace std;
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
-struct SinhVien
+class SinhVien
 {
-	string ma,ten,lop,ns;
-	float gpa;
+private:
+	string ma,ten,lop,email;
+public:
+	friend istream& operator >> (istream&,SinhVien&);
+	friend ostream& operator << (ostream&, SinhVien);
+	string getMa(){
+		return this->ma;
+	}
 };
-string getMa(int n){
-	string s=to_string(n);
-	while(s.length()<3){
-		s='0'+s;
-	}
-	return "B20DCCN"+s;
+istream& operator >> (istream & in,SinhVien& a){
+	in.ignore();
+	in>>a.ma;
+	in.ignore();
+	getline(in,a.ten);
+	in>>a.lop>>a.email;
+	return in;
 }
-void nhap(SinhVien a[],int N){
-	fio(i,0,N){
-		cin.ignore();
-		a[i].ma=getMa(i+1);
-		getline(cin,a[i].ten);
-		cin>>a[i].lop>>a[i].ns>>a[i].gpa;
-		if(a[i].ns[1]=='/') a[i].ns="0"+a[i].ns;
-		if(a[i].ns[4]=='/') a[i].ns.insert(3,"0");
-	}
+ostream& operator << (ostream& out,SinhVien a){
+	out<<a.ma<<' '<<a.ten<<' '<<a.lop<<' '<<a.email<<'\n';
+	return out;
 }
-void in(SinhVien a[],int N){
-	fio(i,0,N){
-		cout<<a[i].ma<<' '<<a[i].ten<<' '<<a[i].lop<<' '<<a[i].ns<<' ';
-		printf("%.2f\n",a[i].gpa);
-	}
+bool cmp(SinhVien a, SinhVien b){
+	return a.getMa()<b.getMa();
+}
+void sapxep(SinhVien a[],int n){
+	sort(a,a+n,cmp);
 }
 int main(){
-    struct SinhVien ds[50];
-    int N;
-    cin >> N;
-    nhap(ds, N);
-    in(ds, N);
-    return 0;
+	int n;cin >>n;
+	SinhVien ds[n];
+	fio(i,0,n) cin>>ds[i];
+	sapxep(ds,n);
+	fio(i,0,n) cout<<ds[i];
+	return 0;
 }

@@ -23,37 +23,34 @@ inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
 struct SinhVien
 {
-	string ma,ten,lop,ns;
-	float gpa;
+	string ma,ten,lop;
+	float t,l,h;
 };
-string getMa(int n){
-	string s=to_string(n);
-	while(s.length()<3){
-		s='0'+s;
-	}
-	return "B20DCCN"+s;
-}
-void nhap(SinhVien a[],int N){
-	fio(i,0,N){
+void nhap(SinhVien a[],int n){
+	fio(i,0,n){
+		cin>>a[i].ma;
 		cin.ignore();
-		a[i].ma=getMa(i+1);
 		getline(cin,a[i].ten);
-		cin>>a[i].lop>>a[i].ns>>a[i].gpa;
-		if(a[i].ns[1]=='/') a[i].ns="0"+a[i].ns;
-		if(a[i].ns[4]=='/') a[i].ns.insert(3,"0");
+		cin>>a[i].lop>>a[i].t>>a[i].l>>a[i].h;
 	}
 }
-void in(SinhVien a[],int N){
-	fio(i,0,N){
-		cout<<a[i].ma<<' '<<a[i].ten<<' '<<a[i].lop<<' '<<a[i].ns<<' ';
-		printf("%.2f\n",a[i].gpa);
+bool cmp(SinhVien a,SinhVien b){
+	return a.ten<b.ten;
+}
+void sapxep(SinhVien a[],int n){
+	sort(a,a+n,cmp);
+}
+void in(SinhVien a[],int n){
+	fio(i,0,n){
+		cout<<i+1<<' '<<a[i].ma<<' '<<a[i].ten<<' '<<a[i].lop<<' ';
+		printf("%.1f %.1f %.1f\n",a[i].t,a[i].l,a[i].h);
 	}
 }
 int main(){
-    struct SinhVien ds[50];
-    int N;
-    cin >> N;
-    nhap(ds, N);
-    in(ds, N);
-    return 0;
+	int n;cin >>n;
+	SinhVien ds[n];
+	nhap(ds,n);
+	sapxep(ds, n);
+	in(ds,n);
+	return 0;
 }

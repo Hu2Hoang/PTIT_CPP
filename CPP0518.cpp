@@ -21,39 +21,48 @@ using namespace std;
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
-struct SinhVien
+int j=0;
+struct NhanVien
 {
-	string ma,ten,lop,ns;
-	float gpa;
+	string ma,ten,gt,ns,dc,mst,hd;
+	int d,m,y;
 };
-string getMa(int n){
-	string s=to_string(n);
-	while(s.length()<3){
+string getMa(int i){
+	string s=to_string(i);
+	while(s.length()<5){
 		s='0'+s;
 	}
-	return "B20DCCN"+s;
+	return s;
 }
-void nhap(SinhVien a[],int N){
-	fio(i,0,N){
+bool cmp(NhanVien a, NhanVien b){
+	return (a.d<b.d);
+}
+void sapxep(NhanVien a[], int n){
+	sort(a,a+n,cmp);
+}
+void nhap(NhanVien &a){
 		cin.ignore();
-		a[i].ma=getMa(i+1);
-		getline(cin,a[i].ten);
-		cin>>a[i].lop>>a[i].ns>>a[i].gpa;
-		if(a[i].ns[1]=='/') a[i].ns="0"+a[i].ns;
-		if(a[i].ns[4]=='/') a[i].ns.insert(3,"0");
-	}
+		a.ma=getMa(j+1); j++;
+		getline(cin,a.ten);
+		cin>>a.gt>>a.ns;
+		cin.ignore();
+		getline(cin,a.dc);
+		cin>>a.mst>>a.hd;
+		a.d=stoi(a.ns.substr(0,2));
+		a.m=stoi(a.ns.substr(3,2));
+		a.y=stoi(a.ns.substr(6));
 }
-void in(SinhVien a[],int N){
-	fio(i,0,N){
-		cout<<a[i].ma<<' '<<a[i].ten<<' '<<a[i].lop<<' '<<a[i].ns<<' ';
-		printf("%.2f\n",a[i].gpa);
+void inds(NhanVien a[],int n){
+	fio(i,0,n){
+		cout<<a[i].ma<<' '<<a[i].ten<<' '<<a[i].gt<<' '<<a[i].ns<<' '<<a[i].dc<<' '<<a[i].mst<<' '<<a[i].hd<<endl;
 	}
 }
 int main(){
-    struct SinhVien ds[50];
-    int N;
+    struct NhanVien ds[50];
+    int N,i;
     cin >> N;
-    nhap(ds, N);
-    in(ds, N);
+    for(i = 0; i < N; i++) nhap(ds[i]);
+    sapxep(ds, N);
+    inds(ds, N);
     return 0;
 }

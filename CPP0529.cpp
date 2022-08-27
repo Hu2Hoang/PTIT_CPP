@@ -21,39 +21,41 @@ using namespace std;
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
-struct SinhVien
+struct NhanVien
 {
-	string ma,ten,lop,ns;
-	float gpa;
+	int id;
+	string ma,ten,lop,email,addr;
 };
-string getMa(int n){
-	string s=to_string(n);
-	while(s.length()<3){
-		s='0'+s;
-	}
-	return "B20DCCN"+s;
-}
-void nhap(SinhVien a[],int N){
-	fio(i,0,N){
-		cin.ignore();
-		a[i].ma=getMa(i+1);
-		getline(cin,a[i].ten);
-		cin>>a[i].lop>>a[i].ns>>a[i].gpa;
-		if(a[i].ns[1]=='/') a[i].ns="0"+a[i].ns;
-		if(a[i].ns[4]=='/') a[i].ns.insert(3,"0");
+void nhap(NhanVien a[],int n){
+	fio(i,0,n){
+		a[i].id=i+1;
+		getline(cin, a[i].ma);
+        getline(cin, a[i].ten);
+        getline(cin, a[i].lop);
+        getline(cin, a[i].email);
+        getline(cin, a[i].addr);
+		//cin.ignore();
 	}
 }
-void in(SinhVien a[],int N){
-	fio(i,0,N){
-		cout<<a[i].ma<<' '<<a[i].ten<<' '<<a[i].lop<<' '<<a[i].ns<<' ';
-		printf("%.2f\n",a[i].gpa);
-	}
+void in(NhanVien a){
+	cout<<a.id<<' '<<a.ma<<' '<<a.ten<<' '<<a.lop<<' '<<a.email<<' '<<a.addr<<endl;
+}
+bool cmp(NhanVien a,NhanVien b){
+	return a.ma<b.ma;
 }
 int main(){
-    struct SinhVien ds[50];
-    int N;
-    cin >> N;
-    nhap(ds, N);
-    in(ds, N);
-    return 0;
+	int n;cin>>n;
+	cin.ignore();
+	int tc;
+	struct NhanVien a[n];
+	nhap(a,n);
+	sort(a,a+n,cmp);
+	cin>>tc;
+	while(tc--){
+		string s;cin>>s;
+		fio(i,0,n){
+			if(s==a[i].addr) in(a[i]);
+		}
+	}
+	return 0;
 }

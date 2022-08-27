@@ -21,39 +21,56 @@ using namespace std;
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
-struct SinhVien
+int j=0;
+string getMa(int i){
+	string s=to_string(i);
+	while(s.length()<3) s="0"+s;
+	return "B20DCCN" + s;
+}
+string chuanhoa(string str){
+	string s,res="";
+	stringstream ss(str);
+	while(ss>>s){
+		s[0]=toupper(s[0]);
+		res+=s+" ";
+	}
+	 return res;
+}
+class SinhVien
 {
-	string ma,ten,lop,ns;
+private:
+	string ten,ma,lop,ns;
 	float gpa;
+public:
+	friend istream& operator >> (istream&, SinhVien&);
+	friend ostream& operator << (ostream&, SinhVien);
 };
-string getMa(int n){
-	string s=to_string(n);
-	while(s.length()<3){
-		s='0'+s;
-	}
-	return "B20DCCN"+s;
+istream& operator >> (istream & in,SinhVien& a){
+	in.ignore();
+	getline(in,a.ten);
+	tolowerr(a.ten);
+	a.ten=chuanhoa(a.ten);
+	in>>a.lop>>a.ns>>a.gpa;
+	if(a.ns[1]=='/') a.ns="0"+a.ns;
+	if(a.ns[4]=='/') a.ns.insert(3,"0");
+	a.ma=getMa(j+1);j++;
+	return in; 
 }
-void nhap(SinhVien a[],int N){
-	fio(i,0,N){
-		cin.ignore();
-		a[i].ma=getMa(i+1);
-		getline(cin,a[i].ten);
-		cin>>a[i].lop>>a[i].ns>>a[i].gpa;
-		if(a[i].ns[1]=='/') a[i].ns="0"+a[i].ns;
-		if(a[i].ns[4]=='/') a[i].ns.insert(3,"0");
-	}
+ostream& operator << (ostream& out,SinhVien a){
+	out<<a.ma<<' '<<a.ten<<' '<<a.lop<<' '<<a.ns<<' ';
+	printf("%.2f\n",a.gpa);
+	return out;
 }
-void in(SinhVien a[],int N){
-	fio(i,0,N){
-		cout<<a[i].ma<<' '<<a[i].ten<<' '<<a[i].lop<<' '<<a[i].ns<<' ';
-		printf("%.2f\n",a[i].gpa);
-	}
-}
+
 int main(){
-    struct SinhVien ds[50];
-    int N;
+    SinhVien ds[50];
+    int N, i;
     cin >> N;
-    nhap(ds, N);
-    in(ds, N);
+    for(i=0;i<N;i++){
+        cin >> ds[i];
+    }
+    for(i=0;i<N;i++){
+        cout << ds[i];
+    }
     return 0;
 }
