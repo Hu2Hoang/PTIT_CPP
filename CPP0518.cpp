@@ -35,7 +35,14 @@ string getMa(int i){
 	return s;
 }
 bool cmp(NhanVien a, NhanVien b){
-	return (a.d<b.d);
+	if(a.y<b.y) return true;
+	if(a.y==b.y){
+		if(a.m<b.m) return true;
+		if(a.m==b.m){
+			if(a.d<b.d) return true;
+		}
+	}
+	return false;
 }
 void sapxep(NhanVien a[], int n){
 	sort(a,a+n,cmp);
@@ -48,8 +55,8 @@ void nhap(NhanVien &a){
 		cin.ignore();
 		getline(cin,a.dc);
 		cin>>a.mst>>a.hd;
-		a.d=stoi(a.ns.substr(0,2));
-		a.m=stoi(a.ns.substr(3,2));
+		a.m=stoi(a.ns.substr(0,2));
+		a.d=stoi(a.ns.substr(3,2));
 		a.y=stoi(a.ns.substr(6));
 }
 void inds(NhanVien a[],int n){

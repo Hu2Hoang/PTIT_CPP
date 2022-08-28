@@ -24,15 +24,14 @@ const int mod=1e9+7;
 struct SinhVien
 {
 	string ma,ten,lop;
-	float t,l,h;
+	double t,l,h;
 };
-void nhap(SinhVien a[],int n){
-	fio(i,0,n){
-		cin>>a[i].ma;
+void nhap(SinhVien &a){
 		cin.ignore();
-		getline(cin,a[i].ten);
-		cin>>a[i].lop>>a[i].t>>a[i].l>>a[i].h;
-	}
+		cin>>a.ma;
+		cin.ignore();
+		getline(cin,a.ten);
+		cin>>a.lop>>a.t>>a.l>>a.h;
 }
 bool cmp(SinhVien a,SinhVien b){
 	return a.ten<b.ten;
@@ -40,17 +39,19 @@ bool cmp(SinhVien a,SinhVien b){
 void sapxep(SinhVien a[],int n){
 	sort(a,a+n,cmp);
 }
-void in(SinhVien a[],int n){
-	fio(i,0,n){
-		cout<<i+1<<' '<<a[i].ma<<' '<<a[i].ten<<' '<<a[i].lop<<' ';
-		printf("%.1f %.1f %.1f\n",a[i].t,a[i].l,a[i].h);
-	}
+void in(SinhVien a){
+		cout<<a.ma<<' '<<a.ten<<' '<<a.lop<<' ';
+		//printf("%.1lf %.1lf %.1lf\n",a[i].t,a[i].l,a[i].h);
+		cout<<fixed<<setprecision(1)<<a.t<<" "<<a.l<<" "<<a.h<<'\n';
 }
 int main(){
 	int n;cin >>n;
 	SinhVien ds[n];
-	nhap(ds,n);
+	for(int i=0;i<n;i++) nhap(ds[i]);
 	sapxep(ds, n);
-	in(ds,n);
+	for(int i=0;i<n;i++){
+		cout<<i+1<<" ";
+		in(ds[i]);
+	}
 	return 0;
 }

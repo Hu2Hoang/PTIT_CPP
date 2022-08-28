@@ -21,47 +21,47 @@ using namespace std;
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
-class SinhVien
+class PhanSo
 {
 private:
-	string ma,ten,lop,email;
+	ll tu,mau;
 public:
-	friend istream& operator >> (istream&,SinhVien&);
-	friend ostream& operator << (ostream&, SinhVien);
-	string getMa(){
-		return this->ma;
-	}
-	string getLop(){
-		return this->lop;
-	}
-
+	PhanSo(ll t,ll m);
+	friend istream& operator >> (istream&, PhanSo&);
+	friend ostream& operator << (ostream&, PhanSo);
+	void rutgon();
+	friend PhanSo operator + (PhanSo,PhanSo);
 };
-istream& operator >> (istream & in,SinhVien& a){
-	in.ignore();
-	in>>a.ma;
-	in.ignore();
-	getline(in,a.ten);
-	in>>a.lop>>a.email;
+PhanSo::PhanSo(ll t,ll m){
+	tu=t;
+	mau=m;
+}
+void PhanSo::rutgon(){
+	ll temp=__gcd(tu,mau);
+	tu/=temp;
+	mau/=temp;
+}
+PhanSo operator + (PhanSo a,PhanSo b){
+	PhanSo tong(1,1);
+	ll mc=lcm(a.mau,b.mau);
+	tong.tu=mc/a.mau*a.tu + mc/b.mau*b.tu;
+	tong.mau=mc;
+	ll tmp=__gcd(tong.tu,tong.mau);
+	tong.tu/=tmp;
+	tong.mau/=tmp;
+	return tong;
+}
+istream& operator >> (istream& in, PhanSo&a){
+	in>>a.tu>>a.mau;
 	return in;
 }
-ostream& operator << (ostream& out,SinhVien a){
-	out<<a.ma<<' '<<a.ten<<' '<<a.lop<<' '<<a.email<<'\n';
+ostream& operator << (ostream& out, PhanSo a){
+	out<<a.tu<<"/"<<a.mau;
 	return out;
 }
-bool cmp(SinhVien a, SinhVien b){
-	if(a.getLop()<b.getLop()) return true;
-	else if(a.getLop()==b.getLop())
-	return a.getMa()<b.getMa();
-return false;
-}
-void sapxep(SinhVien a[],int n){
-	sort(a,a+n,cmp);
-}
-int main(){
-	int n;cin >>n;
-	SinhVien ds[n];
-	fio(i,0,n) cin>>ds[i];
-	sapxep(ds,n);
-	fio(i,0,n) cout<<ds[i];
+int main() {
+	PhanSo p(1,1), q(1,1);
+	cin >> p >> q;
+	cout << p + q;
 	return 0;
 }

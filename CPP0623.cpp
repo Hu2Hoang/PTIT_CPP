@@ -35,10 +35,10 @@ public:
 };
 istream& operator >> (istream & in,SinhVien& a){
 	in>>a.ma;
-	a.khoa=stoi(a.ma.substr(1,2));
 	in.ignore();
 	getline(in,a.ten);
 	in>>a.lop>>a.email;
+	a.khoa=stoi(a.lop.substr(1,2));
 	return in;
 }
 ostream& operator << (ostream& out,SinhVien a){

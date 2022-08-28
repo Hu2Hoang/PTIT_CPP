@@ -21,47 +21,24 @@ using namespace std;
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
-class SinhVien
-{
-private:
-	string ma,ten,lop,email;
-public:
-	friend istream& operator >> (istream&,SinhVien&);
-	friend ostream& operator << (ostream&, SinhVien);
-	string getMa(){
-		return this->ma;
-	}
-	string getLop(){
-		return this->lop;
-	}
-
-};
-istream& operator >> (istream & in,SinhVien& a){
-	in.ignore();
-	in>>a.ma;
-	in.ignore();
-	getline(in,a.ten);
-	in>>a.lop>>a.email;
-	return in;
-}
-ostream& operator << (ostream& out,SinhVien a){
-	out<<a.ma<<' '<<a.ten<<' '<<a.lop<<' '<<a.email<<'\n';
-	return out;
-}
-bool cmp(SinhVien a, SinhVien b){
-	if(a.getLop()<b.getLop()) return true;
-	else if(a.getLop()==b.getLop())
-	return a.getMa()<b.getMa();
-return false;
-}
-void sapxep(SinhVien a[],int n){
-	sort(a,a+n,cmp);
-}
 int main(){
-	int n;cin >>n;
-	SinhVien ds[n];
-	fio(i,0,n) cin>>ds[i];
-	sapxep(ds,n);
-	fio(i,0,n) cout<<ds[i];
+	w(t){
+		int n;cin>>n;
+		vector<int> vi(1e5+1,0);
+		fio(i,0,n){
+			set<int> s;
+			fio(j,0,n){
+				int x;cin>>x;
+				s.insert(x);
+			}
+			for(int x:s) vi[x]++;
+		}
+	int res=0;
+		for(int x:vi){
+			if(x==n) res++;
+		}
+		cout<<res;
+		cout<<endl;
+	}
 	return 0;
 }

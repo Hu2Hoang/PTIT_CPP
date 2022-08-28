@@ -215,11 +215,7 @@ bool snt(long long q){
 	if(q<=1) return false;
 	fio(i,2,sqrt(q)+1){
 		if(q%i==0){
-			temp++;
-		}
-		if(temp>0){
 			return false;
-			break;
 		}
 	}
 	return true;
