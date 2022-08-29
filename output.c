@@ -213,7 +213,7 @@ bool snt(long long n)
 bool snt(long long q){
 	int temp=0;
 	if(q<=1) return false;
-	fio(i,2,sqrt(q)+1){
+	for(int i=2;i<=sqrt(q);i++){
 		if(q%i==0){
 			return false;
 		}

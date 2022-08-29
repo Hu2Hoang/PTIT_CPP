@@ -7,7 +7,7 @@ using namespace std;
 #define se second
 #define sz(a) int((a).size())
 #define ms(s,n) memset(s,n,sizeof(s))
-#define fio(i,a1,b1) for(int i=a1;i<b1;i++)
+#define fio(i,a1,b1) for(ll i=a1;i<b1;i++)
 #define w(t) int t;scanf("%d",&t);while(t--)
 #define tolowerr(str) transform(str.begin(),str.end(),str.begin(),::tolower);
 #define toupperr(str) transform(str.begin(),str.end(),str.begin(),::toupper);
@@ -23,21 +23,26 @@ inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
 int main(){
 	w(t){
-		int n;cin>>n;
-		vector<int> vi(1e5+1,0);
-		fio(i,0,n){
-			set<int> s;
-			fio(j,0,n){
-				int x;cin>>x;
-				s.insert(x);
+		int n,m,l;
+		cin >> n >> m >> l;
+		bool check=false;
+		ll a[n],b[m],c[l];
+		int i=0,j=0,k=0;
+		for(auto &x:a) cin>>x;
+		for(auto &x:b) cin>>x;
+		for(auto &x:c) cin>>x;
+
+		while(i<n && j<m && k< l){
+			if(a[i]==b[j]&&b[j]==c[k]){
+				cout<<a[i]<<' ';
+				check=true;
+				i++;j++;k++;
 			}
-			for(int x:s) vi[x]++;
+			else if(a[i]<b[j]) i++;
+			else if(b[j]<c[k]) j++;
+			else k++;
 		}
-		int res=0;
-		for(int x:vi){
-			if(x==n) res++;
-		}
-		cout<<res;
+		if(!check) cout<<-1;
 		cout<<endl;
 	}
 	return 0;

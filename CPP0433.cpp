@@ -21,23 +21,31 @@ using namespace std;
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
+bool cmp(pair<int,int> a,pair<int,int> b){
+	if(a.se>b.se) return true;
+	else if(a.se==b.se){
+		if(a.fi<b.fi) return true;
+	}
+	return false;
+}
 int main(){
 	w(t){
 		int n;cin>>n;
-		vector<int> vi(1e5+1,0);
+		map<int, int> m;
 		fio(i,0,n){
-			set<int> s;
-			fio(j,0,n){
-				int x;cin>>x;
-				s.insert(x);
-			}
-			for(int x:s) vi[x]++;
+			int x;cin>>x;
+			m[x]++;
 		}
-		int res=0;
-		for(int x:vi){
-			if(x==n) res++;
+		vector<pair<int,int>> vp;
+		for(auto x:m){
+			vp.push_back(make_pair(x.fi,x.se));
 		}
-		cout<<res;
+		sort(vp.begin(),vp.end(),cmp);
+		for(auto x:vp){
+			fio(i,0,x.se)
+			cout<<x.first<<' ';
+			
+		}
 		cout<<endl;
 	}
 	return 0;

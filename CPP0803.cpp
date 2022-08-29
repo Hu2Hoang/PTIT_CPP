@@ -21,40 +21,17 @@ using namespace std;
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
-class SinhVien
-{
-private:
-	string ma,ten,lop,email;
-public:
-	friend istream& operator >> (istream&,SinhVien&);
-	friend ostream& operator << (ostream&, SinhVien);
-	string getMa(){
-		return this->ma;
-	}
-};
-istream& operator >> (istream & in,SinhVien& a){
-	in.ignore();
-	in>>a.ma;
-	in.ignore();
-	getline(in,a.ten);
-	in>>a.lop>>a.email;
-	return in;
-}
-ostream& operator << (ostream& out,SinhVien a){
-	out<<a.ma<<' '<<a.ten<<' '<<a.lop<<' '<<a.email<<'\n';
-	return out;
-}
-bool cmp(SinhVien a, SinhVien b){
-	return a.getMa()<b.getMa();
-}
-void sapxep(SinhVien a[],int n){
-	sort(a,a+n,cmp);
-}
 int main(){
-	int n;cin >>n;
-	SinhVien ds[n];
-	fio(i,0,n) cin>>ds[i];
-	sapxep(ds,n);
-	fio(i,0,n) cout<<ds[i];
+	ifstream fi;
+	fi.open("DATA.in");
+	int x;
+	map<int,int> mp;
+	while(fi>>x){
+		mp[x]++;
+	}
+	fi.close();
+	for(auto x:mp){
+		cout<<x.fi<<' '<<x.se<<endl;
+	}
 	return 0;
 }

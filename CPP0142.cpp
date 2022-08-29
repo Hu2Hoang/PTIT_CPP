@@ -21,23 +21,29 @@ using namespace std;
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
+bool snt(long long q){
+	int temp=0;
+	if(q<=1) return false;
+	for(int i=2;i<=sqrt(q);i++){
+		if(q%i==0){
+			return false;
+		}
+	}
+	return true;
+}
+bool check(int n){
+	int temp=0;
+	fio(i,1,n){
+		if(__gcd(i,n)==1) temp++;
+	}
+	if(snt(temp)) return true;
+	else return false;
+}
 int main(){
 	w(t){
 		int n;cin>>n;
-		vector<int> vi(1e5+1,0);
-		fio(i,0,n){
-			set<int> s;
-			fio(j,0,n){
-				int x;cin>>x;
-				s.insert(x);
-			}
-			for(int x:s) vi[x]++;
-		}
-		int res=0;
-		for(int x:vi){
-			if(x==n) res++;
-		}
-		cout<<res;
+		if(check(n)) cout<<1;
+		else cout<<0;
 		cout<<endl;
 	}
 	return 0;

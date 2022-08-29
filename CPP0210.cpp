@@ -24,20 +24,17 @@ const int mod=1e9+7;
 int main(){
 	w(t){
 		int n;cin>>n;
-		vector<int> vi(1e5+1,0);
+		int a[n];
+		for(int &x:a) cin>>x;
+		int res=-1e5;
 		fio(i,0,n){
-			set<int> s;
-			fio(j,0,n){
-				int x;cin>>x;
-				s.insert(x);
+			fio(j,i+1,n){
+				if(a[j]<=a[i]) continue;
+				else res=max(res,a[j]-a[i]);
 			}
-			for(int x:s) vi[x]++;
 		}
-		int res=0;
-		for(int x:vi){
-			if(x==n) res++;
-		}
-		cout<<res;
+		if(res!=-1e5) cout<<res;
+		else cout<<-1;
 		cout<<endl;
 	}
 	return 0;

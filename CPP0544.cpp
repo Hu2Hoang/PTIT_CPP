@@ -21,23 +21,35 @@ using namespace std;
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
+#define PI 3.141592653589793238
+struct Data
+{	
+	double x,y;
+};
+double kc(Data a,Data b){
+	double d=sqrt(pow(a.x-b.x,2)+pow(a.y-b.y,2));
+	return d;
+}
+void solve(){
+	Data a,b,c;
+	cin>>a.x>>a.y>>b.x>>b.y>>c.x>>c.y;
+	double A,B,C;
+	A=kc(a,b);
+	B=kc(b,c);
+	C=kc(a,c);
+	if(!(A+B>C&&B+C>A&&C+A>B)){
+		cout<<"INVALID";
+		return;
+	}
+	double p=(A+B+C)/2;
+	double s=sqrt(p*(p-A)*(p-B)*(p-C));
+	double R=A*B*C/(4*s);
+	double res=PI*R*R;
+	printf("%.3lf",res);
+}
 int main(){
 	w(t){
-		int n;cin>>n;
-		vector<int> vi(1e5+1,0);
-		fio(i,0,n){
-			set<int> s;
-			fio(j,0,n){
-				int x;cin>>x;
-				s.insert(x);
-			}
-			for(int x:s) vi[x]++;
-		}
-		int res=0;
-		for(int x:vi){
-			if(x==n) res++;
-		}
-		cout<<res;
+		solve();
 		cout<<endl;
 	}
 	return 0;

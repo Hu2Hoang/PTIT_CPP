@@ -22,23 +22,16 @@ using namespace std;
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
 int main(){
-	w(t){
-		int n;cin>>n;
-		vector<int> vi(1e5+1,0);
-		fio(i,0,n){
-			set<int> s;
-			fio(j,0,n){
-				int x;cin>>x;
-				s.insert(x);
-			}
-			for(int x:s) vi[x]++;
-		}
-		int res=0;
-		for(int x:vi){
-			if(x==n) res++;
-		}
-		cout<<res;
-		cout<<endl;
+	ifstream fi;
+	set<string> s;
+	string x;
+	fi.open("VANBAN.in");
+	while(fi>>x){
+		tolowerr(x);
+		s.insert(x);
+	}
+	for(string x: s){
+		cout<<x<<endl;
 	}
 	return 0;
 }
