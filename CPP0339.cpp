@@ -21,56 +21,18 @@ using namespace std;
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
-class TapDoan
-{
-private:
-	string code,name;
-	int count;
-public:
-	friend istream& operator >> (istream&, TapDoan&);
-	friend ostream& operator << (ostream&, TapDoan);
-	string getCode(){
-		return this->code;
-	}
-	int getCount(){
-		return this->count;
-	}
-};
-istream& operator >> (istream & in,TapDoan& a){
-	scanf("\n");
-	in>>a.code;
-	scanf("\n");
-	getline(in,a.name);
-	in>>a.count;
-	return in;
-}
-ostream& operator << (ostream& out,TapDoan a){
-	out<<a.code<<' '<<a.name<<' '<<a.count<<'\n';
-	return out;
-}
-bool cmp(TapDoan a,TapDoan b){
-	if(a.getCount()>b.getCount()) return true;
-	else if(a.getCount()==b.getCount()){
-		if(a.getCode()<b.getCode()) return true;
-	}
-	return false;
-}
-void sapxep(TapDoan a[],int n){
-	sort(a,a+n,cmp);
-}
 int main(){
-	int n;cin >>n;
-	TapDoan ds[n];
-	fio(i,0,n) cin>>ds[i];
-	sapxep(ds,n);
-	int tc;cin >>tc;
-	while(tc--){
-		int l,r;cin>>l>>r;
-		cout<<"DANH SACH DOANH NGHIEP NHAN TU "<<l<<" DEN "<<r<<" SINH VIEN:\n";
+	w(t){
+		string s;cin>>s;
+		int res=0;
+		int n=s.length();
 		fio(i,0,n){
-			if(ds[i].getCount()>=l&&ds[i].getCount()<=r) cout<<ds[i];
+			fio(j,i,n){
+				if(s[i]==s[j]) res++;
+			}
 		}
+		cout<<res;
+		cout<<endl;
 	}
-	//fio(i,0,n) cout<<ds[i];
 	return 0;
 }

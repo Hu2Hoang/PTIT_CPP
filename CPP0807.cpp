@@ -19,50 +19,30 @@ using namespace std;
 #define mcd(n) vector<int> mcd(n); partial_sum(vi.begin(),vi.end(),mcd.begin());//mcd[r-1]-mcd[l-2]
 #define mav(vi) *max_element(vi.begin(),vi.end())
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
-inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
-const int mod=1e9+7;
-class TapDoan
-{
-private:
-	string code,name;
-	int count;
-public:
-	friend istream& operator >> (istream&, TapDoan&);
-	friend ostream& operator << (ostream&, TapDoan);
-	string getCode(){
-		return this->code;
+inline ll lcm(ll a, ll b) {return (a * b) / __gcd(a, b);}
+const int mod = 1e9 + 7;
+int main() {
+	int n, m;
+	set<int> s1, s2;
+	map<int , int> mp;
+	ifstream fi;
+	fi.open("DATA.in");
+
+	fi >> n >> m;
+	fio(i, 0, n) {
+		int x; fi >> x;
+		s1.insert(x);
 	}
-	int getCount(){
-		return this->count;
+	fio(i, 0, m) {
+		int x; fi >> x;
+		s2.insert(x);
 	}
-};
-istream& operator >> (istream & in,TapDoan& a){
-	scanf("\n");
-	in>>a.code;
-	scanf("\n");
-	getline(in,a.name);
-	in>>a.count;
-	return in;
-}
-ostream& operator << (ostream& out,TapDoan a){
-	out<<a.code<<' '<<a.name<<' '<<a.count<<'\n';
-	return out;
-}
-bool cmp(TapDoan a,TapDoan b){
-	if(a.getCount()>b.getCount()) return true;
-	else if(a.getCount()==b.getCount()){
-		if(a.getCode()<b.getCode()) return true;
+	for (auto x : s1) mp[x]++;
+	for (auto x : s2) mp[x]++;
+
+	for (auto x : mp) {
+		if (x.se == 2) cout << x.fi << ' ';
 	}
-	return false;
-}
-void sapxep(TapDoan a[],int n){
-	sort(a,a+n,cmp);
-}
-int main(){
-	int n;cin >>n;
-	TapDoan ds[n];
-	fio(i,0,n) cin>>ds[i];
-	sapxep(ds,n);
-	fio(i,0,n) cout<<ds[i];
-	return 0;
+
+return 0;
 }

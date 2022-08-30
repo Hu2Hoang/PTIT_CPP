@@ -21,56 +21,39 @@ using namespace std;
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
-class TapDoan
+class SinhVien
 {
 private:
-	string code,name;
-	int count;
+	string ma,ten,lop,email;
 public:
-	friend istream& operator >> (istream&, TapDoan&);
-	friend ostream& operator << (ostream&, TapDoan);
-	string getCode(){
-		return this->code;
-	}
-	int getCount(){
-		return this->count;
+	friend istream& operator>> (istream&,SinhVien&);
+	friend ostream& operator << (ostream&, SinhVien);
+	string getMa(){
+		return this->ma;
 	}
 };
-istream& operator >> (istream & in,TapDoan& a){
+istream& operator >> (istream & in,SinhVien& a){
 	scanf("\n");
-	in>>a.code;
+	in>>a.ma;
 	scanf("\n");
-	getline(in,a.name);
-	in>>a.count;
+	getline(in,a.ten);
+	in>>a.lop>>a.email;
 	return in;
 }
-ostream& operator << (ostream& out,TapDoan a){
-	out<<a.code<<' '<<a.name<<' '<<a.count<<'\n';
+ostream& operator << (ostream& out,SinhVien a){
+	out<<a.ma<<' '<<a.ten<<' '<<a.lop<<' '<<a.email<<'\n';
 	return out;
 }
-bool cmp(TapDoan a,TapDoan b){
-	if(a.getCount()>b.getCount()) return true;
-	else if(a.getCount()==b.getCount()){
-		if(a.getCode()<b.getCode()) return true;
-	}
-	return false;
-}
-void sapxep(TapDoan a[],int n){
-	sort(a,a+n,cmp);
+bool cmp(SinhVien a, SinhVien b){
+	return a.getMa()<b.getMa();
 }
 int main(){
-	int n;cin >>n;
-	TapDoan ds[n];
-	fio(i,0,n) cin>>ds[i];
-	sapxep(ds,n);
-	int tc;cin >>tc;
-	while(tc--){
-		int l,r;cin>>l>>r;
-		cout<<"DANH SACH DOANH NGHIEP NHAN TU "<<l<<" DEN "<<r<<" SINH VIEN:\n";
-		fio(i,0,n){
-			if(ds[i].getCount()>=l&&ds[i].getCount()<=r) cout<<ds[i];
-		}
+	int n=0;
+	SinhVien ds[1000],x;
+	while(cin>>x){
+		ds[n++]=x;
 	}
-	//fio(i,0,n) cout<<ds[i];
+	sort(ds,ds+n,cmp);
+	fio(i,0,n) cout<<ds[i];
 	return 0;
 }

@@ -21,56 +21,62 @@ using namespace std;
 #define acm(vi) accumulate(vi.begin(),vi.end(),0)
 inline ll lcm(ll a,ll b){return (a*b)/__gcd(a,b);}
 const int mod=1e9+7;
-class TapDoan
+class GiaoVien
 {
 private:
-	string code,name;
-	int count;
+	string hoten,ten,bomon,mon;
 public:
-	friend istream& operator >> (istream&, TapDoan&);
-	friend ostream& operator << (ostream&, TapDoan);
-	string getCode(){
-		return this->code;
+	string ma;
+	friend istream& operator >> (istream&,GiaoVien&);
+	friend ostream& operator << (ostream&, GiaoVien);
+	string getTen(){
+		return this->ten;
 	}
-	int getCount(){
-		return this->count;
+	string getMa(){
+		return this->ma;
 	}
 };
-istream& operator >> (istream & in,TapDoan& a){
+istream& operator >> (istream& in, GiaoVien& a){
 	scanf("\n");
-	in>>a.code;
-	scanf("\n");
-	getline(in,a.name);
-	in>>a.count;
+	getline(in,a.hoten);
+	getline(in,a.bomon);
+
+	string s1;
+	stringstream ss1(a.hoten);
+	while(ss1>>s1){
+		a.ten=s1;
+	}
+	string s2,res="";
+	stringstream ss2(a.bomon);
+	while(ss2>>s2){
+		res+=toupper(s2[0]);
+	}
+	a.mon=res;
 	return in;
 }
-ostream& operator << (ostream& out,TapDoan a){
-	out<<a.code<<' '<<a.name<<' '<<a.count<<'\n';
+ostream& operator << (ostream& out,GiaoVien a){
+	out<<a.ma<<' '<<a.hoten<<' '<<a.mon<<'\n';
 	return out;
 }
-bool cmp(TapDoan a,TapDoan b){
-	if(a.getCount()>b.getCount()) return true;
-	else if(a.getCount()==b.getCount()){
-		if(a.getCode()<b.getCode()) return true;
+bool cmp(GiaoVien a,GiaoVien b){
+	if(a.getTen()<b.getTen()) return true;
+	else if(a.getTen()==b.getTen()){
+		return a.getMa()<b.getMa();
 	}
 	return false;
 }
-void sapxep(TapDoan a[],int n){
+void sapxep(GiaoVien a[],int n){
 	sort(a,a+n,cmp);
 }
 int main(){
-	int n;cin >>n;
-	TapDoan ds[n];
-	fio(i,0,n) cin>>ds[i];
-	sapxep(ds,n);
-	int tc;cin >>tc;
-	while(tc--){
-		int l,r;cin>>l>>r;
-		cout<<"DANH SACH DOANH NGHIEP NHAN TU "<<l<<" DEN "<<r<<" SINH VIEN:\n";
-		fio(i,0,n){
-			if(ds[i].getCount()>=l&&ds[i].getCount()<=r) cout<<ds[i];
-		}
+	int n;cin>>n;
+	GiaoVien ds[n];
+	fio(i,0,n){
+		ds[i].ma="GV"+to_string(i+1);
+		if(i+1<10) ds[i].ma.insert(2,"0");
+		cin>>ds[i];
 	}
-	//fio(i,0,n) cout<<ds[i];
+	sapxep(ds,n);
+	fio(i,0,n) cout<<ds[i];
 	return 0;
 }
